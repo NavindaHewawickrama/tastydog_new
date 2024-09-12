@@ -25,9 +25,9 @@ const AddNewAddress: React.FC<ModalProps> = ({ open, onClose }) => {
   const [cityData, setCityData] = useState<ICity[] | undefined>(undefined); // Type updated
   const [state, setState] = useState<IState | undefined>(undefined); 
   const [city, setCity] = useState<ICity | undefined>(undefined);
-  const [streetAddress, setStreet] = useState("Somewhere Street");
-  const [aptSuite, setSuitNo] = useState("2/222");
-  const [landmark, setLandMark] = useState("Infront of State Hospital");
+  const [streetAddress, setStreet] = useState("");
+  const [aptSuite, setSuitNo] = useState("");
+  const [landmark, setLandMark] = useState("");
   const [countryId, setCountryId] = useState<number | null>(null);
   const [stateId, setStateId] = useState<number | null>(null);
   const [region, setRegion] = useState('');
