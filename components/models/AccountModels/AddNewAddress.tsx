@@ -47,15 +47,15 @@ useEffect(()=>{
 
 useEffect(()=>{
   setCityData(City.getCitiesOfState(country?.isoCode || '', state?.isoCode || '') || undefined);
-  //  console.log(City.getCitiesOfState(country?.isoCode || '', state?.isoCode || '') || undefined);
+   console.log(City.getCitiesOfState(country?.isoCode || '', state?.isoCode || '') || undefined);
 },[state])
 
 useEffect(()=>{
-  stateData && setState(stateData[0]);
+  stateData && setState(stateData[6]);
 },[stateData])
 
 useEffect(()=>{
-  cityData && setCity(cityData[0]);
+  cityData && setCity(cityData[413]);
 },[cityData])
 
 //  console.log(countryData[13].name);
