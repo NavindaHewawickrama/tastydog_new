@@ -96,7 +96,7 @@ const Page: React.FC = () => {
   return (
     <>
       <PageTransition>
-        <div className="max-w-[1300px] px-[50px] py-[50px] flex gap-4">
+        <div className="max-w-[1300px] pl-[50px] py-[50px] flex gap-20">
           <div className="w-[50%] flex-1 ">
             <div className="w-full flex flex-col py-[50px] px-[30px] shadow-xl">
               <div className="flex flex-row items-center gap-10">

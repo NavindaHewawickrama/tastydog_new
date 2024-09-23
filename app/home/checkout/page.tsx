@@ -228,12 +228,13 @@ const CheckoutForm = ({ setModalOpen, cardholderName, setCardholderName }: { set
   return ( 
     <div>
       <div className="w-full mb-4 flex flex-col gap-2">
-        <p className="text-[12px] text-inputText capitalize">Cardholder Name</p>
+        <p className="text-[12px] text-inputText capitalize"></p>
         <div className="w-full h-[48px] bg-inputBlue rounded-lg border-2 border-inputBorder">
           <input
             type="text"
             name="cardholderName"
             value={cardholderName}
+            placeholder="Cardholder Name"
             className="w-full outline-none bg-transparent h-full font-normal text-[14px] text-inputText px-4"
             onChange={(e) => setCardholderName(e.target.value)}
           />
@@ -289,7 +290,7 @@ const CheckOut = () => {
     <>
       <PageTransition>
 
-      <section className="w-full px-[50px] xl:py-[50px] md:py-[35px]">
+      <section className="w-full pl-[10px] pr-[50px] xl:py-[50px] md:py-[35px]">
       <div className="flex lg:flex-row md:flex-col xl:gap-[50px] md:gap-[25px]">
             <div className="lg:w-[65%] md:w-full shadow-xl py-[50px] rounded-[10px]">
                 <div className="max-w-[452px] flex flex-col mx-auto">
