@@ -78,7 +78,7 @@ const NearbyShops = () => {
           onSwiper={(swiper) => (swiperRef.current = swiper)}
           modules={[Navigation]}
           spaceBetween={15}
-          slidesPerView={4}
+          slidesPerView={swipersettings}
           navigation
         >
           {Shop &&
