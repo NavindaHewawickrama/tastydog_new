@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 //import Shops from "@/constants/Shops";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -9,12 +9,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import styled from "styled-components";
 
 
 const NearbyShops = () => {
   const router = useRouter();
   const [Shop, setShops] = useState<any[]>([]);
   const [swipersettings,setSwipersettings] = useState(0);
+  const swiperRef = useRef<any>(null);
   useEffect(() => {
     handleNearbyhops();
   }, []);
@@ -49,16 +51,34 @@ const NearbyShops = () => {
     router.push("/home/shopview/");
   };
 
+
+  const handlePrevSlide = () => {
+     if (swiperRef.current) swiperRef.current.slidePrev();
+  };
+
+  const handleNextSlide = () => {
+     if (swiperRef.current) swiperRef.current.slideNext();
+  };
+
   return (
     <div className="mt-[50px] w-full overflow-hidden ">
       <h2 className="capitalize text-[24px] font-bold mb-[20px]">
         Shops Nearby
       </h2>
+      {/* <div className="flex gap-1 justify-end mb-4">
+        <button onClick={handlePrevSlide} className="bg-gray-400 text-white px-4 py-2 rounded-lg hover:bg-slate-600">
+          &lt;
+        </button>
+        <button onClick={handleNextSlide} className="bg-gray-400 text-white px-4 py-2 rounded-lg hover:bg-slate-600">
+          &gt;
+        </button> */}
+      {/* </div> */}
       <div className="md:hidden xl:flex">
         <Swiper
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
           modules={[Navigation]}
           spaceBetween={15}
-          slidesPerView={swipersettings}
+          slidesPerView={4}
           navigation
         >
           {Shop &&
@@ -95,6 +115,7 @@ const NearbyShops = () => {
 
       <div className="md:flex xl:hidden">
         <Swiper
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
           modules={[Navigation]}
           spaceBetween={25}
           slidesPerView={2}

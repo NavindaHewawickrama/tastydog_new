@@ -1,0 +1,80 @@
+.swiper-button-prev,
+.swiper-button-next {
+  position: absolute;
+  top: 10px; 
+  width: 40px; 
+  height: 40px; 
+  z-index: 10;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: gray; 
+  color: white; 
+  border-radius: 5px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.swiper-button-prev {
+  right: 60px; 
+}
+
+.swiper-button-next {
+  right: 10px; 
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  background-color: #4f4f4f; 
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
+}
+
+.swiper-button-prev.swiper-button-disabled,
+.swiper-button-next.swiper-button-disabled {
+  opacity: 0.35;
+  cursor: auto;
+  pointer-events: none;
+}
+
+.swiper-button-prev.swiper-button-hidden,
+.swiper-button-next.swiper-button-hidden {
+  opacity: 0;
+  cursor: auto;
+  pointer-events: none;
+}
+
+.swiper-navigation-disabled .swiper-button-prev,
+.swiper-navigation-disabled .swiper-button-next {
+  display: none !important;
+}
+
+.swiper-button-prev svg,
+.swiper-button-next svg {
+  width: 60%; 
+  height: 60%; 
+  object-fit: contain;
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  font-size: 0; 
+  display: none; 
+  content: none;
+}
+
+.swiper-button-prev:before,
+.swiper-button-next:before {
+  content: ''; 
+  border-style: solid;
+}
+
+.swiper-button-prev:before {
+  border-width: 8px 10px 8px 0; 
+  border-color: transparent white transparent transparent;
+}
+
+.swiper-button-next:before {
+  border-width: 8px 0 8px 10px;
+  border-color: transparent transparent transparent white;
+}
