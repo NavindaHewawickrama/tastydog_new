@@ -67,26 +67,26 @@ const handleShopViewClick = (id: string, name: string, image: string) => {
                   {shops.map((item) => (
                     <div
                       key={item.id}
-                      className="lg:w-full md:w-full xl:w-[89%] h-[320px] rounded-xl mb-5 shadow-lg z-0 cursor-pointer hover:bg-green-200"
+                      className="lg:w-full md:w-full xl:w-[89%] h-[320px] rounded-xl mb-4 shadow-lg z-0 cursor-pointer hover:bg-green-200"
                       onClick={(e) => {
                         e.stopPropagation(); // Prevent event bubbling to parent div
                         handleShopViewClick(item._id,item.name,item.profilePhoto);
                       }}
                     >
-                      <div className="relative w-50% h-[189px] rounded-t-xl z-0">
+                      <div className="relative w-50% h-[220px] rounded-t-xl z-0">
                         <Image
                           src={item.profilePhoto}
                           alt={item.name}
                           width={200}
-                          height={189}
+                          height={300}
                           className="w-full h-full rounded-t-xl z-0"
                         />
                       </div>
                       <div className="py-3 px-3">
-                        <h3 className="text-[15px] text-detail capitalize font-medium">
+                        <h3 className="text-[13px] text-detail capitalize font-medium">
                         {item.name}
                         </h3>
-                        <p className="text-[15px] font-bold text-black ">
+                        <p className="text-[11px] font-bold text-black ">
                           {item.address}
                         </p>
                         <div className="w-full flex flex-row justify-between items-center mt-2">

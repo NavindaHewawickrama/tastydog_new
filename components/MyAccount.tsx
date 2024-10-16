@@ -245,7 +245,7 @@ const MyAccount = () => {
                 personal info
               </h3>
               <button
-                className="w-[91px] h-[31px] bg-none border-2 border-button2 text-[14px] text-center rounded-xl transition-transform duration-300 ease-in-out transform hover:scale-[1.1]"
+                className="w-[91px] h-[31px] bg-none border-2 border-button2 text-[14px] text-center rounded-lg transition-transform duration-300 ease-in-out transform hover:scale-[1.1] mr-1"
                 onClick={() => setUpdateAccountModal(true)}
               >
                 Edit

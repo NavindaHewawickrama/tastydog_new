@@ -83,12 +83,12 @@ const ProductView = () => {
         console.log(dataComments);
         setItemComments(dataComments);
         
-        if(dataComments.length < 2){
-          setSwipersettings(1);
-        }else if(dataComments.length < 3  ){
-          setSwipersettings(2);
-        }else{
+        if(dataComments.length < 3  ){
+          setSwipersettings(dataComments.length);
+        }else if(dataComments.length == 3  ){
           setSwipersettings(3);
+        }else{
+          setSwipersettings(4);
         }
       }
     } catch (error) {
