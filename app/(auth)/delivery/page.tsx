@@ -121,7 +121,7 @@ const handleShowAlert = () => {
   }
 
   return (
-    <div className="w-screen h-screen hidden md:flex flex-row overflow-hidden">
+    <div className="w-screen h-screen md:flex sm:flex flex-row overflow-hidden">
       <div className=" relative lg:w-[50%] md:w-[60%] flex flex-col items-center justify-center shadow-2xl shadow-black overflow-hidden">
         <Image src="/Logo.png" alt="logo" width={330} height={94} />
         <div className="w-[444px] flex flex-col items-center justify-center mt-[30px]">
@@ -153,7 +153,7 @@ const handleShowAlert = () => {
             delivery address
           </h2>
 
-          <div className="w-full h-[48px] mt-5 rounded-lg border-2 bg-inputBlue border-inputBorder">
+          <div className="lg:w-full w-[75%] h-[48px] mt-5 rounded-lg border-2 bg-inputBlue border-inputBorder">
             <input
               type="text"
               placeholder="Apt Line Address"
@@ -162,7 +162,7 @@ const handleShowAlert = () => {
             />
           </div>
 
-          <div className="w-full h-[48px] flex items-center  mt-3 rounded-lg bg-inputBlue border-2 border-inputBorder">
+          <div className="lg:w-full w-[75%] h-[48px] flex items-center  mt-3 rounded-lg bg-inputBlue border-2 border-inputBorder">
             <input
               type="text"
               placeholder="Street Address"
@@ -172,7 +172,7 @@ const handleShowAlert = () => {
           </div>
 
           <div className="flex flex-row items-center gap-4 mt-3">
-            <div className="w-[214px] h-[48px] flex items-center rounded-lg border-2 border-inputBorder">
+            <div className="lg:w-[214px] w-[150px] h-[48px] flex items-center rounded-lg border-2 border-inputBorder">
               <input
                 type="text"
                 placeholder="City"
@@ -181,7 +181,7 @@ const handleShowAlert = () => {
               />
             </div>
 
-            <div className="w-[214px] h-[48px] flex items-center rounded-lg border-2 border-inputBorder">
+            <div className="lg:w-[214px] w-[150px] h-[48px] flex items-center rounded-lg border-2 border-inputBorder">
               <input
                 type="text"
                 placeholder="State/province"
@@ -192,7 +192,7 @@ const handleShowAlert = () => {
           </div>
 
 
-          <div className="w-full h-[48px] flex items-center  mt-3 rounded-lg border-2 bg-inputBlue border-inputBorder">
+          <div className="wlg:w-full w-[75%] h-[48px] flex items-center  mt-3 rounded-lg border-2 bg-inputBlue border-inputBorder">
             <input
               type="text"
               placeholder="Land Mark"
@@ -203,7 +203,7 @@ const handleShowAlert = () => {
           <button
             // onClick={() => router.push("/home")}
             onClick={()=>handeClick()}
-            className="w-full h-[41px] bg-[#DE7230] mt-10 text-center rounded-lg text-slate-50 text-[18px] font-bold capitalize transition-transform duration-300 ease-in-out transform hover:scale-[0.97]"
+            className="lg:w-full w-[75%] h-[41px] bg-[#DE7230] mt-10 text-center rounded-lg text-slate-50 text-[18px] font-bold capitalize transition-transform duration-300 ease-in-out transform hover:scale-[0.97]"
           >
             confirm
           </button>

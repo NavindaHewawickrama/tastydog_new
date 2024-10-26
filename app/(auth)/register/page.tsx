@@ -190,22 +190,22 @@ const Register = () => {
   };
   
   return (
-    <div className="w-screen h-screen hidden md:flex flex-row overflow-hidden">
+    <div className="w-screen h-screen md:flex sm:flex flex-row overflow-hidden">
       <CustomAlert 
               message={alertMessage}
               show={showAlert} 
               onClose={() => setShowAlert(false)} 
             />
       {nextModel ? (
-      <><div className="relative w-[50%]  flex flex-col items-center justify-center shadow-2xl shadow-black overflow-hidden">
+      <><div className="relative lg:w-[50%] md:w-[50%] xl:w-[50%] w-full h-full flex flex-col items-center justify-center shadow-2xl shadow-black overflow-hidden">
           <Image src="/Logo.png" alt="logo" width={330} height={94} />
           <div className="w-[444px] flex flex-col items-center justify-center mt-[30px]">
             <h2 className="text-[32px] font-Lato font-bold leading-4 text-[#3C3939]">
               Sign Up
             </h2>
-            <div className="flex flex-row justify-between items-center w-full mt-[50px]">
+            <div className="flex flex-row justify-evenly items-center w-full mt-[50px]">
               <div
-                className="w-[210px] h-[50px] flex justify-between items-center rounded-xl border-2 border-slate-300 cursor-pointer"
+                className="lg:w-[210px] xl:w-[210px] w-[150px] h-[50px] flex justify-between items-center rounded-xl border-2 border-slate-300 cursor-pointer"
                 onClick={handleFacebookSignIn}
               >
                 <div className="w-[30%] h-[50px] flex flex-col items-center justify-center rounded-full">
@@ -223,7 +223,7 @@ const Register = () => {
                 </div>
               </div>
               <div
-                className="w-[210px] h-[50px] flex justify-between items-center rounded-xl border-2 border-slate-300 cursor-pointer"
+                className="lg:w-[210px] xl:w-[210px] w-[150px] h-[50px] flex justify-evenly items-center rounded-xl border-2 border-slate-300 cursor-pointer"
                 onClick={handleGoogleSignIn}
               >
                 <div className="w-[30%] h-[50px] flex flex-col items-center justify-center rounded-full">
@@ -241,21 +241,21 @@ const Register = () => {
                 </div>
               </div>
             </div>
-            <div className="w-full h-[48px] mt-5 rounded-lg border-2 border-inputBorder">
+            <div className="lg:w-full w-[75%] h-[48px] mt-5 rounded-lg border-2 border-inputBorder">
               <input
                 type="text"
                 placeholder="Full Name"
                 className="w-full outline-none bg-transparent h-full font-normal text-[14px] text-inputText px-4"
                 onChange={(e) => setFullName(e.target.value)} />
             </div>
-            <div className="w-full h-[48px] flex items-center mt-3 rounded-lg border-2 border-inputBorder">
+            <div className="lg:w-full w-[75%] h-[48px] flex items-center mt-3 rounded-lg border-2 border-inputBorder">
               <input
                 type="email"
                 placeholder="E-mail"
                 className="w-[90%] outline-none bg-transparent h-full font-normal text-[14px] text-inputText px-4"
                 onChange={(e) => setEmail(e.target.value)} />
             </div>
-            <div className="w-full h-[48px] flex items-center mt-3 rounded-lg border-2 border-inputBorder">
+            <div className="lg:w-full w-[75%] h-[48px] flex items-center mt-3 rounded-lg border-2 border-inputBorder">
               <input
                 type={showPassword? "text": "password"}
                 placeholder="Password"
@@ -267,7 +267,7 @@ const Register = () => {
                   } 
                 </div>
             </div>
-            <div className="w-full h-[48px] flex items-center mt-3 rounded-lg border-2 border-inputBorder">
+            <div className="lg:w-full w-[75%] h-[48px] flex items-center mt-3 rounded-lg border-2 border-inputBorder">
               <input
                 type={showConfirmPassword?"text":"password"}
                 placeholder="Confirm Password"
@@ -281,7 +281,7 @@ const Register = () => {
             </div>
             <button
               onClick={() => handleSubmit()}
-              className="w-full h-[41px] bg-[#DE7230] mt-10 text-center rounded-lg text-slate-50 text-[18px] font-bold capitalize transition-transform duration-300 ease-in-out transform hover:scale-[0.97]"
+              className="lg:w-full w-[75%] h-[41px] bg-[#DE7230] mt-10 text-center rounded-lg text-slate-50 text-[18px] font-bold capitalize transition-transform duration-300 ease-in-out transform hover:scale-[0.97]"
             >
               Sign Up
             </button>
@@ -316,7 +316,8 @@ const Register = () => {
           <div className="absolute bottom-[-250px] right-[-290px] opacity-30">
             <Image src="/shapes.png" alt="shapes" width={400} height={400} />
           </div>
-        </div><div className="lg:w-[50%] md:w-[40%] flex flex-col md:h-screen items-center justify-center bg-auth-pattern bg-cover bg-no-repeat bg-center"></div></>
+        </div>
+        <div className="lg:w-[50%] md:w-[50%] w-[50%] flex flex-col md:h-screen items-center justify-center bg-auth-pattern bg-cover bg-no-repeat bg-center"></div></>
       ) : (
         <div className="relative lg:w-[50%] md:w-[60%] flex flex-col items-center justify-center shadow-2xl shadow-black overflow-hidden">
           <Image src="/Logo.png" alt="logo" width={330} height={94} />

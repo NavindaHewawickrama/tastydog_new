@@ -179,17 +179,17 @@ const Login = () => {
           </div>
         </div>
       )}
-      <div className="w-screen h-screen hidden lg:flex flex-row overflow-hidden">
+      <div className="flex flex-col w-screen h-screen overflow-hidden lg:flex-row md:flex-row sm:flex-row">
         {nextModel ? (
           <>
-          <div className=" relative w-[50%] flex flex-col items-center justify-center shadow-2xl shadow-black overflow-hidden">
+          <div className=" relative w-full lg:w-[50%] md:w-[50%] h-full flex flex-col items-center justify-center shadow-2xl shadow-black overflow-hidden">
           <Image src="/Logo.png" alt="logo" width={330} height={94} />
           <div className="w-[444px] flex flex-col items-center justify-center mt-[70px]">
             <h2 className="text-[32px] font-Lato font-bold leading-4 ">
               Log In
             </h2>
-            <div className="flex flex-row justify-between items-center w-full mt-[50px]">
-              <div className="w-[210px] h-[50px] flex justify-between items-center rounded-xl border-2 border-slate-300 cursor-pointer">
+            <div className="flex flex-row justify-evenly items-center w-full mt-[50px] ">
+              <div className="lg:w-[210px] xl:w-[210px] w-[150px] h-[50px] flex justify-between items-center rounded-xl border-2 border-slate-300 cursor-pointer">
                 <div className="w-[30%] h-[50px] flex flex-col items-center justify-center rounded-full">
                   <Image
                     src="/facebook.svg"
@@ -206,7 +206,7 @@ const Login = () => {
                 </div>
               </div>
               <div 
-              className="w-[210px] h-[50px] flex justify-between items-center rounded-xl border-2 border-slate-300 cursor-pointer "
+              className="lg:w-[210px] xl:w-[210px] w-[150px] h-[50px] flex justify-between items-center rounded-xl border-2 border-slate-300 cursor-pointer "
               onClick={handleGoogleLogIn}>
                 <div className="w-[30%] h-[50px] flex flex-col items-center justify-center rounded-full">
                   <Image
@@ -225,7 +225,7 @@ const Login = () => {
               </div>
             </div>
 
-            <div className="w-full h-[48px] bg-inputBlue mt-5 rounded-lg border-2 border-inputBorder">
+            <div className="lg:w-full w-[75%] h-[48px] bg-inputBlue mt-5 rounded-lg border-2 border-inputBorder">
               <input
                 type="text"
                 placeholder="E-Mail"
@@ -234,7 +234,7 @@ const Login = () => {
               />
             </div>
 
-            <div className="w-full h-[48px] flex items-center bg-inputBlue mt-5 rounded-lg border-2 border-inputBorder">
+            <div className="lg:w-full w-[75%]  h-[48px] flex items-center bg-inputBlue mt-5 rounded-lg border-2 border-inputBorder">
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
@@ -249,7 +249,7 @@ const Login = () => {
               </div>
             </div>
             <button
-              className="w-full h-[41px] bg-[#DE7230] mt-10 text-center rounded-lg text-slate-50 text-[18px] font-bold transition-transform duration-300 ease-in-out transform hover:scale-[0.97]"
+              className="lg:w-full w-[75%]  h-[41px] bg-[#DE7230] mt-10 text-center rounded-lg text-slate-50 text-[18px] font-bold transition-transform duration-300 ease-in-out transform hover:scale-[0.97]"
                onClick={() => handleLogin()}
             >
               LOG IN
@@ -259,7 +259,7 @@ const Login = () => {
               show={showAlert} 
               onClose={() => setShowAlert(false)} 
             />
-            <div className="w-full flex flex-row justify-between mt-2">
+            <div className="w-full flex flex-row justify-evenly mt-2">
               <p className="text-link">
                 <Link
                   href="#"
@@ -287,7 +287,7 @@ const Login = () => {
         </div>
           </>
         ): (
-          <div className="relative lg:w-[50%] md:w-[60%] flex flex-col items-center justify-center shadow-2xl shadow-black overflow-hidden">
+          <div className="relative lg:w-[50%] md:w-[60%] flex flex-col items-center justify-center shadow-2xl shadow-black overflow-hidden sm:hidden">
             <Image src="/Logo.png" alt="logo" width={330} height={94} />
           <div
               className="min-w-[400px] md:w-[auto] bg-white px-[45px] py-[25px] rounded-2xl"
