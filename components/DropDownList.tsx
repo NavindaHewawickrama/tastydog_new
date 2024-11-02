@@ -76,7 +76,7 @@ const DropDownList = () => {
               onClose={() => setShowAlert(false)} 
             />
       <section className="relative">
-        <div className="flex justify-between items-center lg:w-[210px] md:w-[200px] h-[60px] rounded-lg bg-lighterGreen px-[10px] py-[8px]">
+        <div className="flex justify-between items-center lg:w-[210px] md:w-[200px] xl:w-[210px] w-[150px] h-[60px] rounded-lg bg-lighterGreen px-[10px] py-[8px]">
           <Link href="/home/settings" className="flex items-center gap-4">
             <Image
               src={imageUrl || ""}
@@ -85,7 +85,7 @@ const DropDownList = () => {
               height={43}
               className="rounded-full h-auto transition-transform duration-300 ease-in-out transform hover:scale-[1.2]"
             />
-            <h3 className="text-[14px] font-medium capitalize text-detail">
+            <h3 className="xl:text-[14px] lg:text-[14px] md:text[14px] text-[9px] font-medium capitalize text-detail">
               {name}
             </h3>
           </Link>
@@ -110,13 +110,13 @@ const DropDownList = () => {
               className="flex items-center gap-2cursor-pointer"
             >
               <IoIosNotifications className="w-[24px] h-[24px]" />
-              <h3 className="text-[15px] text-detail font-medium capitalize">
+              <h3 className="xl:text-[15px] lg:text-[15px] md:text[15px] text-[10px] text-detail font-medium capitalize">
                 notification manager
               </h3>
             </Link>
             <Link href="/" className="flex items-center gap-2 mt-5 text-red">
               <MdLogout className="w-[24px] h-[24px] text-red-600" />
-              <h3 className="text-[15px] text-red-600 font-medium capitalize"  onClick={handleLogout}>
+              <h3 className="xl:text-[15px] lg:text-[15px] md:text[15px] text-[10px] text-red-600 font-medium capitalize"  onClick={handleLogout}>
                 Log out
               </h3>
             </Link>

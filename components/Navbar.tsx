@@ -46,21 +46,21 @@ const Navbar = () => {
 
   return (
     <div className=" lg:px-[50px] md:px-[25px] py-[20px] md:ml-[45px]  lg:ml-0 shadow-xl">
-      <div className="w-full flex flex-row items-center justify-between">
+      <div className="xl:w-full lg:w-full md:w-full w-[100%] flex pl-1  flex-row items-center justify-between">
         <SearchBar />
         <div className="flex items-center xl:gap-6 md:gap-2 lg:gap-4">
           <Link
             href="/home/cart"
             className="cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-[1.4]"
           >
-            <FaCartShopping className="text-inputText w-[27px] h-[27px]" />
+            <FaCartShopping className="pl-1 text-inputText lg:w-[27px] md:w-[27px] xl:w-[27px] w-[18px] lg:h-[27px] md:h-[27px] xl:h-[27px] h-[18px]" />
           </Link>
           <Link
             href="/home/notifications"
             className="relative cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-[1.4]"
           >
-            <IoIosNotifications className="text-inputText w-[27px] h-[27px]" />
-            <div className="absolute top-0 right-0 w-[15px] h--[15px] rounded-full bg-button2 cursor-pointer flex justify-center items-center">
+            <IoIosNotifications className="pl-1 text-inputText lg:w-[27px] md:w-[27px] xl:w-[27px] w-[22px] lg:h-[27px] md:h-[27px] xl:h-[27px] h-[22px]" />
+            <div className="absolute top-0 right-0 lg:w-[15px] md:w-[15px] xl:w-[15px] w-[10px] lg:h-[15px] md:h-[15px] xl:h-[15px] h-[10px] rounded-full bg-button2 cursor-pointer flex justify-center items-center">
               <p className="text-[10px] text-white ">{notificationLength}</p>
             </div>
           </Link>

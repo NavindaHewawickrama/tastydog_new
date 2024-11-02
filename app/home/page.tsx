@@ -86,10 +86,10 @@ const Home = () => {
     <>
       <PageTransition>
         <div className="px-[50px] py-[30px]">
-          <h2 className="capitalize text-[24px] font-bold">
+          <h2 className="lg:mt-0 xl:mt-0 md:mt-0 mt-10 capitalize xl:text-[24px] lg:text-[24px] md:text[24px] text-[15px] font-bold">
             {salutation} {userNames}
           </h2>
-          <div className="mt-2 xl:px-[40px] md:px-[35px] w-[1400px]] h-[500px]">
+          <div className="lg:mt-0 xl:mt-0 md:mt-0 mt-2 xl:px-[40px] md:px-[35px] w-[1400px]] xl:h-[500px] lg:h-[500px] md:h-[500px] h-[200px]">
             <Slider />
           </div>
           <NearbyShops />

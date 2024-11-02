@@ -93,7 +93,7 @@ return (
       onClick={handleSearch}
     >
       <p className="text-lightGray transition-transform duration-300 ease-in-out transform hover:scale-[1.5]">
-        <IoSearchOutline className="w-[22px] h-[22px] " />
+        <IoSearchOutline className="pl-2 lg:w-[22px] md:w-[22px] xl:w-[22px] w-[18px] lg:h-[22px] md:h-[22px] xl:h-[22px] h-[18px] " />
       </p>
     </button>
     <input
@@ -106,7 +106,7 @@ return (
     }
   }}
       placeholder="Search Foods or Restaurant"
-      className="w-[92%] outline-none bg-transparent h-full font-normal text-[14px] text-inputText px-4"
+      className="w-[92%] outline-none bg-transparent h-full font-normal xl:text-[14px] lg:text-[14px] md:text[14px] text-[9px] text-inputText px-4"
     />
   </div>
 );
