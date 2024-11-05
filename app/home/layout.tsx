@@ -18,7 +18,7 @@ const checkWindowSize = () => {
   if(typeof window !== "undefined") {
     windowWidth = window.innerWidth;
     console.log(windowWidth);
-    if( windowWidth >= 700){
+    if( windowWidth >= 1024){
       setIsDesktop(true);
     } else {
       setIsDesktop(false);

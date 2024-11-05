@@ -67,13 +67,13 @@ const handleShopViewClick = (id: string, name: string, image: string) => {
                   {shops.map((item) => (
                     <div
                       key={item.id}
-                      className="w-[15vw] h-[50vh] rounded-xl mb-4 shadow-lg z-0 cursor-pointer hover:bg-green-200"
+                      className="xl:w-[15vw] lg:w-[15vw] md:w-[20vw] w-[60vw] h-[50vh] rounded-xl mb-4 shadow-lg z-0 cursor-pointer hover:bg-green-200"
                       onClick={(e) => {
                         e.stopPropagation(); // Prevent event bubbling to parent div
                         handleShopViewClick(item._id,item.name,item.profilePhoto);
                       }}
                     >
-                      <div className="relative w-[15vw] h-[30vh] rounded-t-xl z-0">
+                      <div className="relative xl:w-[15vw] lg:w-[15vw] md:w-[20vw] w-[60vw] h-[30vh] rounded-t-xl z-0">
                         <Image
                           src={item.profilePhoto}
                           alt={item.name}
