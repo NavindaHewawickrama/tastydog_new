@@ -229,21 +229,21 @@ const CheckoutForm = ({ setModalOpen, cardholderName, setCardholderName }: { set
     <div>
       <div className="w-full mb-4 flex flex-col gap-2">
         <p className="text-[12px] text-inputText capitalize"></p>
-        <div className="w-full h-[48px] bg-inputBlue rounded-lg border-2 border-inputBorder">
+        <div className="w-[90%] ml-4 h-[48px] bg-inputBlue rounded-lg border-2 border-inputBorder">
           <input
             type="text"
             name="cardholderName"
             value={cardholderName}
             placeholder="Cardholder Name"
-            className="w-full outline-none bg-transparent h-full font-normal text-[14px] text-inputText px-4"
+            className="w-[90%] ml-4 outline-none bg-transparent h-full font-normal text-[14px] text-inputText px-4"
             onChange={(e) => setCardholderName(e.target.value)}
           />
         </div>
       </div>
-      <CardElement className="w-full h-[48px] bg-inputBlue rounded-lg border-2 border-inputBorder" />
+      <CardElement className="w-[90%] h-[48px] bg-inputBlue ml-4 rounded-lg border-2 border-inputBorder" />
       <button
         onClick={handlePayment}
-        className="w-full h-[45px] text-center bg-Green2 text-[20px] text-white rounded-[10px] capitalize mt-10 transition-transform duration-300 ease-in-out transform hover:scale-95"
+        className="w-[90%] h-[45px] text-center bg-Green2 text-[20px] text-white rounded-[10px] capitalize mt-10 ml-4 transition-transform duration-300 ease-in-out transform hover:scale-95"
       >
         Pay Now
         <CustomAlert 
@@ -264,6 +264,34 @@ const CheckOut = () => {
   useEffect(() => {
     handleShopDetails();
   }, []);
+
+  const [isDesktop, setIsDesktop] = useState(true);
+
+//checking if window is desktop size or not
+const checkWindowSize = () => {
+  let windowWidth;
+  if(typeof window !== "undefined") {
+    windowWidth = window.innerWidth;
+    console.log(windowWidth);
+    if( windowWidth >= 1024){
+      setIsDesktop(true);
+    } else {
+      setIsDesktop(false);
+    }
+  }
+
+  
+}
+
+useEffect(() => {
+  checkWindowSize();
+}, [isDesktop])
+
+
+//when window is resizing
+  if(typeof window !== "undefined") {
+    window.addEventListener('resize', checkWindowSize);
+  }
 
   const handleShopDetails = async () => {
     const itemsCart = sessionStorage.getItem("cartItems");
@@ -288,16 +316,49 @@ const CheckOut = () => {
 
   return (
     <>
+    
       <PageTransition>
-
-      <section className="w-full pl-[10px] pr-[50px] xl:py-[50px] md:py-[35px]">
-      <div className="flex lg:flex-row md:flex-col xl:gap-[50px] md:gap-[25px]">
-            <div className="lg:w-[65%] md:w-full shadow-xl py-[50px] rounded-[10px]">
+      {isDesktop?(
+        <section className="w-full pl-[10px] pr-[50px] xl:py-[50px] md:py-[35px]">
+        <div className="flex lg:flex-row md:flex-col xl:gap-[50px] md:gap-[25px]">
+              <div className="lg:w-[65%] md:w-full shadow-xl py-[50px] rounded-[10px]">
+                  <div className="max-w-[452px] flex flex-col mx-auto">
+                      <div className="w-full flex flex-col gap-3 ">
+                           <h2 className="text-[24px] font-semibold capitalize">Select Payment Method</h2>
+                           <div className="w-full flex items-center gap-2">
+                              <button className="w-[224px] h-[48px] flex text-center bg-primary text-white text-[12px] rounded-[4px] justify-center items-center gap-3">
+                                  <BsCreditCard className=" text-[20px]  text-white" />
+                                  Credit/Debit Card
+                              </button>
+                              {/* <button className="w-[224px] h-[48px] flex text-center bg-none text-black border border-gray-400 justify-center items-center rounded-[4px] gap-3">
+                                  <FaPaypal className="text-[20px] text-blue-900" />
+                                      PayPal
+                                  </button> */}
+                              </div>
+                          </div>
+                          <Elements stripe={stripePromise}>
+                              <CheckoutForm
+                                  setModalOpen={setModalOpen}
+                                  cardholderName={cardholderName}
+                                  setCardholderName={setCardholderName}
+                              />
+                          </Elements>
+                      </div>
+                  </div>
+                  <div className="lg:w-[35%] md:w-full h-full shadow-xl rounded-[10px] px-[25px] py-[25px]">
+                      <OrderSummery/>
+                  </div>
+              </div>
+        </section>
+      ):(
+        <section className="w-full  pl-[10px] pr-[50px] xl:py-[50px] md:py-[35px]">
+      <div className="xl:gap-[50px] md:gap-[25px]">
+            <div className="w-[110%] shadow-xl mt-20 py-[50px] rounded-[10px]">
                 <div className="max-w-[452px] flex flex-col mx-auto">
                     <div className="w-full flex flex-col gap-3 ">
-                         <h2 className="text-[24px] font-semibold capitalize">Select Payment Method</h2>
+                         <h2 className="text-[18px] font-semibold capitalize">Select Payment Method</h2>
                          <div className="w-full flex items-center gap-2">
-                            <button className="w-[224px] h-[48px] flex text-center bg-primary text-white text-[12px] rounded-[4px] justify-center items-center gap-3">
+                            <button className="w-[214px] h-[48px] flex text-center bg-primary text-white text-[12px] rounded-[4px] justify-center items-center gap-3">
                                 <BsCreditCard className=" text-[20px]  text-white" />
                                 Credit/Debit Card
                             </button>
@@ -316,11 +377,13 @@ const CheckOut = () => {
                         </Elements>
                     </div>
                 </div>
-                <div className="lg:w-[35%] md:w-full h-full shadow-xl rounded-[10px] px-[25px] py-[25px]">
+                <div className="w-[110%] h-full shadow-xl rounded-[10px] px-[25px] py-[25px]">
                     <OrderSummery/>
                 </div>
             </div>
       </section>
+      )}
+      
       </PageTransition>
       <OrderSuccsess open={modalOpen} onClose={() => setModalOpen(false)} />
       </>
