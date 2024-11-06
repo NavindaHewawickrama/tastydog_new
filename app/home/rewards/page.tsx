@@ -197,7 +197,7 @@ const Page: React.FC = () => {
           </div>
         </div>
         ):(
-          <div className="max-w-[1300px] pl-[50px] py-[50px] gap-20">
+          <div className="max-w-[1300px] h-[90vh] pl-[50px] py-[50px] gap-20">
           <div className="w-[50%] flex-1 ">
             <div className="w-[70vw] flex flex-col py-[50px] px-[30px] shadow-xl">
               <div className="flex flex-row items-center gap-10">

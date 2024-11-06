@@ -34,6 +34,34 @@ const AddNewAddress: React.FC<ModalProps> = ({ open, onClose }) => {
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
 
+  const [isDesktop, setIsDesktop] = useState(true);
+
+//checking if window is desktop size or not
+const checkWindowSize = () => {
+  let windowWidth;
+  if(typeof window !== "undefined") {
+    windowWidth = window.innerWidth;
+    console.log(windowWidth);
+    if( windowWidth >= 1024){
+      setIsDesktop(true);
+    } else {
+      setIsDesktop(false);
+    }
+  }
+
+  
+}
+
+useEffect(() => {
+  checkWindowSize();
+}, [isDesktop])
+
+
+//when window is resizing
+  if(typeof window !== "undefined") {
+    window.addEventListener('resize', checkWindowSize);
+  }
+
     const handleShowAlert = () => {
       setShowAlert(true);
       setTimeout(() => setShowAlert(false), 3000); // Auto-close after 3 seconds
@@ -110,7 +138,10 @@ useEffect(()=>{
   };
 
   return (
-    <div
+    <>
+    {isDesktop?(
+
+<div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
       onClick={onClose}
     >
@@ -295,6 +326,198 @@ useEffect(()=>{
         </div>
       </motion.div>
     </div>
+    ):(
+
+      //mobile view
+
+      <div
+      className="fixed inset-0 z-50 flex items-center justify-start bg-black bg-opacity-50"
+      onClick={onClose}
+    >
+      <CustomAlert 
+              message={alertMessage}
+              show={showAlert} 
+              onClose={() => setShowAlert(false)} 
+            />
+      <motion.div
+        variants={dropIn}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        className="bg-white w-[100vw] py-[25px]  flex flex-col items-center rounded-xl align-middle"
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
+        <div className="w-[452px] mx-auto">
+          <div className="flex flex-row justify-between">
+            <h4 className="text-[18px] p-2 capitalize font-bold">Add New Address</h4>
+            <p
+              className="text-[15px] cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-[1.3] hover:text-red-600"
+              onClick={onClose}
+            >
+              X
+            </p>
+          </div>
+          <div className="w-full p-2 flex flex-col justify-center mt-5 ">
+            <div className="w-full  mb-4 flex flex-col gap-2">
+              <p className="text-[12px] text-inputText capitalize">
+                Street Address
+              </p>
+              <div className="w-[90vw] h-[48px] bg-inputBlue rounded-lg border-2 border-inputBorder">
+                <input
+                  type="text"
+                  value={streetAddress}
+                  onChange={(e) => setStreet(e.target.value)}
+                  className="w-[85vw] outline-none bg-transparent h-full font-normal text-[14px] text-inputText px-4"
+                />
+              </div>
+            </div>
+            <div className="w-full mb-4 flex flex-col gap-2 ">
+              <p className="text-[12px] text-inputText capitalize">
+                Apt/Suit No.
+              </p>
+              <div className="w-[90vw] h-[48px] bg-inputBlue rounded-lg border-2 border-inputBorder">
+                <input
+                  type="text"
+                  value={aptSuite}
+                  onChange={(e) => setSuitNo(e.target.value)}
+                  className="w--[85vw] outline-none bg-transparent h-full font-normal text-[14px] text-inputText px-4"
+                />
+              </div>
+            </div>
+            {/* <div className="w-full mb-4 flex flex-col gap-2 ">
+              <p className="text-[12px] text-inputText capitalize">
+                country
+              </p>
+              <div className="w-full h-[48px] bg-inputBlue rounded-lg border-2 border-inputBorder">
+                <input
+                  type="text"
+                  value={country}
+                  onChange={(e) => setCountry(e.target.value)}
+                  className="w-full outline-none bg-transparent h-full font-normal text-[14px] text-inputText px-4"
+                />
+              </div>
+            </div> */}
+            <div className="w-full mb-4 flex flex-col gap-2">
+              <p className="text-[12px] text-inputText capitalize">Country</p>
+              <div >
+              {/* <CountrySelect
+                value={countryId}
+                onChange={(e: any) => {
+                  setCountryId(e.id);
+                  setCountry(e.name);
+                }}
+                placeHolder="Select Country"
+                className="w-full"
+              /> */ }
+                <select value={country.name} onChange={(e) => setCountry(countryData.find(c => c.name === e.target.value) || country)} aria-placeholder="Select Country" className="-[85vw] h-[48px] bg-inputBlue rounded-lg border-2 text-inputText border-inputBorder">
+                  {countryData.map((country) => (
+                    <option key={country.name} value={country.name} className="pl-7">
+                      {country.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <div className="w-full mb-4 flex flex-col gap-2">
+              <div className="flex flex-row item-center gap-3 w-full h-full">
+                <div className="w-[225px]">
+                  <p className="text-[12px] text-inputText capitalize mb-2">State/Province</p>
+                  {/* <div className="w-full h-[48px] bg-inputBlue rounded-lg border-2 border-inputBorder">
+                    <input
+                      type="text"
+                      value={state}
+                      onChange={(e) => setState(e.target.value)}
+                      className="w-full outline-none bg-transparent h-full font-normal text-[14px] text-inputText px-4"
+                    />
+                  </div> */}
+                  <div >
+                  {/* <StateSelect
+                      countryid={countryId || 0}
+                      value={stateId}
+                      onChange={(e: any) => {
+                        setStateId(e.id);
+                        setState(e.name);
+                      }}
+                      placeHolder="Select State"
+                      className="w-full"
+                      isDisabled={!countryId}
+                    /> */}
+                    <select value={state?.name} onChange={(e)=>setState(stateData?.find(c => c.name === e.target.value) || state)} className="w-[40vw] h-[48px] bg-inputBlue rounded-lg border-2 text-inputText border-inputBorder">
+                    {stateData && stateData.map((state) => (
+                    <option key={state.name} value={state.name} className="pl-7">
+                      {state.name}
+                    </option>
+                  ))}
+                    </select>
+                  </div>
+                </div>
+                <div className="w-[225px]">
+                  <p className="text-[12px] text-inputText capitalize mb-2">City</p>
+                  {/* <div className="w-full h-[48px] bg-inputBlue rounded-lg border-2 border-inputBorder">
+                    <input
+                      type="text"
+                      value={city}
+                      onChange={(e) => setCity(e.target.value)}
+                      className="w-full outline-none bg-transparent h-full font-normal text-[14px] text-inputText px-4"
+                    />
+                  </div> */}
+
+                  <div>
+                  {/* <CitySelect
+                        countryid={countryId || 0}
+                        stateid={stateId || 0}
+                        onChange={(e: any) => setCity(e.name)}
+                        placeHolder="Select City"
+                        className="w-full"
+                        isDisabled={!stateId}
+                      /> */}
+                      <select value={city?.name} onChange={(e)=>setCity(cityData?.find(c=>c.name=== e.target.value) || city)} className="w-[40vw] h-[48px] bg-inputBlue rounded-lg border-2 text-inputText border-inputBorder">
+                        {cityData && cityData.map((city)=>(
+                          <option key={city.name} value={city.name} className="pl-7">
+                            {city.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div className="w-full mb-4 flex flex-col gap-2">
+              <p className="text-[12px] text-inputText capitalize">
+                Landmark
+              </p>
+              <div className="w-[90vw]  h-[48px] bg-inputBlue rounded-lg border-2 border-inputBorder">
+                <input
+                  type="text"
+                  value={landmark}
+                  onChange={(e) => setLandMark(e.target.value)}
+                  className="w-[85vw] outline-none bg-transparent h-full font-normal text-[14px] text-inputText px-4"
+                />
+              </div>
+            </div>
+            <div className="w-full flex flex-col items-center gap-5 mt-1">
+              <button
+                className="w-[214px] h-[45px] text-center bg-Green2 text-[14px] text-white rounded-md transition-transform duration-300 ease-in-out transform hover:scale-95"
+                onClick={handleAddingNewAddress}
+              >
+                Save
+              </button>
+              <button
+                className="w-[214px] h-[45px] text-center bg-none text-[14px] text-button2 rounded-md border border-button2 transition-transform duration-300 ease-in-out transform hover:scale-95"
+                onClick={onClose}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+    )}
+    </>
+    
   );
 };
 

@@ -31,6 +31,33 @@ const ProductView = () => {
   const [swipersettings,setSwipersettings] = useState(0);
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
+  const [isDesktop, setIsDesktop] = useState(true);
+
+//checking if window is desktop size or not
+const checkWindowSize = () => {
+  let windowWidth;
+  if(typeof window !== "undefined") {
+    windowWidth = window.innerWidth;
+    console.log(windowWidth);
+    if( windowWidth >= 1024){
+      setIsDesktop(true);
+    } else {
+      setIsDesktop(false);
+    }
+  }
+
+  
+}
+
+useEffect(() => {
+  checkWindowSize();
+}, [isDesktop])
+
+
+//when window is resizing
+  if(typeof window !== "undefined") {
+    window.addEventListener('resize', checkWindowSize);
+  }
 
   const handleShowAlert = () => {
     setShowAlert(true);
@@ -43,6 +70,8 @@ const ProductView = () => {
     const userIdG = setUserId(localStorage.getItem("userId"));
     const name = localStorage.getItem("shopName");
     const image = localStorage.getItem("shopImage");
+
+    
 
     const fetchRatings = async (foodId: any) => {
       try {
@@ -242,8 +271,7 @@ const handleShopId = async (id:any) =>{
               onClose={() => setShowAlert(false)} 
             />
       <PageTransition>
-        
-        <div className="w-full px-[70px] py-[50px] bg-aashColor">
+        {isDesktop?(<div className="w-full px-[70px] py-[50px] bg-aashColor">
           
           <div className="max-w-[1075px] flex flex-col">
            
@@ -498,7 +526,269 @@ const handleShopId = async (id:any) =>{
               </Swiper>
             </div>
           </section>
-        </div>
+        </div>):(
+          
+          //mobile
+          
+          
+          
+          <div className="w-full px-[70px] py-[50px] bg-aashColor">
+          
+          <div className="w-[50vw] h-full  flex-col">
+           
+            <div className="w-full h-full xl:gap-7 md:gap-4 ">
+            
+                  <div className="w-[70vw] h-full ">
+                    <div className="w-[40vw] h-[20vh]">
+                      <Image
+                        src={Array.isArray(foodData?.itemImages) ? foodData?.itemImages[0] : foodData?.itemImages}
+                        alt={foodData?.itemName || 'Product Name'}
+                        width={1000}
+                        height={1000}
+                        className="w-[70vw] h-[20vh] rounded-2xl"
+                      />
+                    </div>
+                  </div>
+                  <div className="xl:w-[50%] md:w-[40%] py-[25px]">
+                    <div className="xl:w-[337px] md:w-[250px] flex flex-col md:mx-auto">
+                      <h2 className="xl:text-[30px] md:text-[22px] font-semibold capitalize mb-2">
+                        {foodData?.itemName}
+                      </h2>
+                      <h2 className="xl:text-[30px] md:text-[25px] font-semibold text-primary capitalize mb-2">
+                        ${foodData?.price}
+                      </h2>
+                      <div className="flex item-center gap-2">
+                       {renderStars()}
+                      </div>
+                      <div className="flex flex-col gap-2 mt-[75px]">
+                        <button
+                          className="w-full h-[45px] text-center text-white bg-green-900 text-20px capitalize rounded-xl transition-transform duration-300 ease-in-out transform hover:scale-95"
+                          onClick={() => handleBuyProduct(foodData)}
+                        >
+                          buy now
+                        </button>
+                        <button
+                          onClick={() => handleToggle(foodData)}
+                          className="w-full h-[45px] text-center text-button2 bg-none text-20px capitalize rounded-xl border-2 border-button2 transition-transform duration-300 ease-in-out transform hover:scale-95"
+                        >
+                          add to cart
+                        </button>
+                        <button  
+                        onClick={()=>handleAddToFavourite(foodData?._id)}
+                        className="w-full h-[45px] text-center text-buttonGreen bg-none text-20px capitalize rounded-xl border-2 border-buttonGreen transition-transform duration-300 ease-in-out transform hover:scale-95">
+                          mark as favorite
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+              
+            </div>
+          </div>
+          <div className="max-w-[1150px]  mt-[50px]">
+            <div className="w-[50vw] align-middle text-center">
+              <div className="w-full mb-5">
+                <h3 className="text-[24px] text-primary capitalize font-semibold">
+                  description
+                </h3>
+              </div>
+              <p className="text-[16px] text-inputText">
+                {foodData?.itemDesc}
+              </p>
+            </div>
+            <div className="w-[50vw]">
+              <div className="w-full flex flex-col items-center align-middle ">
+                <div className="w-[10vh] h-[10vh] rounded-full ">
+                  <Image
+                    src={shopImage? shopImage:profilePic}
+                    alt="prouct"
+                    width={10}
+                    height={10}
+                    className="rounded-full w-[10vh] h-[10vh"
+                  />
+                </div>
+                <h3 className="text-[18px] font-medium ">{shopName}</h3>
+                <div className="flex items-center gap-2 mt-1">
+                <div className="flex items-center gap-2 mt-1">
+                {[...Array(5)].map((_, index) => (
+                  <span key={index}>
+                    {index < Math.floor(ShopRating[0]?.averageRating || 0) ? (
+                      <FaStar className="text-starColor text-[25px]" />
+                    ) : (
+                      <FaRegStar className="text-starColor text-[25px]" />
+                    )}
+                  </span>
+                ))}
+              </div>
+            </div>
+                {ShopRating.map((item)=>(
+                <div key={item._id} className="flex flex-col justify-center gap-1 mt-2">
+                  <div className="flex items-center justify-center gap-5">
+                    <p className="text-[13px] text-primary font-semibold">
+                      5 Stars
+                    </p>
+                    <div className="xl:w-[241px] md:w-[150px]  h-[15px] bg-lime-100 rounded-full dark:bg-lime-100 mt-[10px]">
+                      <div className="bg-green-900 h-[15px] rounded-full" style={{ width: `${(item.fiveStarCount / item.totalRatings) * 100}%` }}></div>
+
+                    </div>
+
+                    <p className="text-[13px] text-inputText">({item.fiveStarCount})</p>
+                  </div>
+                  <div className="flex items-center justify-center gap-5">
+                    <p className="text-[13px] text-primary font-semibold">
+                      4 Stars
+                    </p>
+
+                    <div className="xl:w-[241px] md:w-[150px]  h-[15px] bg-lime-100 rounded-full dark:bg-lime-100 mt-[10px]">
+                      <div className="bg-green-900 h-[15px] rounded-full" style={{ width: `${(item.fourStarCount/ item.totalRatings) * 100}%` }}></div>
+
+                    </div>
+
+                    <p className="text-[13px] text-inputText">({item.fourStarCount})</p>
+                  </div>
+                  <div className="flex items-center justify-center gap-5">
+                    <p className="text-[13px] text-primary font-semibold">
+                      3 Stars
+                    </p>
+
+                    <div className="xl:w-[241px] md:w-[150px]  h-[15px] bg-lime-100 rounded-full dark:bg-lime-100 mt-[10px]">
+                      <div className="bg-green-900 h-[15px] rounded-full" style={{ width: `${(item.threeStarCount / item.totalRatings) * 100}%` }}></div>
+
+                    </div>
+
+                    <p className="text-[13px] text-inputText">({item.threeStarCount})</p>
+                  </div>
+                  <div className="flex items-center justify-center gap-5">
+                    <p className="text-[13px] text-primary font-semibold">
+                      2 Stars
+                    </p>
+
+
+                    <div className="xl:w-[241px] md:w-[150px]  h-[15px] bg-lime-100 rounded-full dark:bg-lime-100 mt-[10px]">
+                      <div className="bg-green-900 h-[15px] rounded-full" style={{ width: `${(item.twoStarCount / item.totalRatings) * 100}%` }}></div>
+
+                    </div>
+
+                    <p className="text-[13px] text-inputText">({item.twoStarCount})</p>
+                  </div>
+                  <div className="flex items-center justify-center gap-5">
+                    <p className="text-[13px] text-primary font-semibold">
+                      1 Stars
+                    </p>
+
+                    <div className="xl:w-[241px] md:w-[150px]  h-[15px] bg-lime-100 rounded-full dark:bg-lime-100 mt-[10px]">
+                      <div className="bg-green-900 h-[15px] rounded-full" style={{ width: `${(item.oneStarCount / item.totalRatings) * 100}%` }}></div>
+
+                    </div>
+
+                    <p className="text-[13px] text-inputText">({item.oneStarCount})</p>
+                  </div>
+                </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <section className="w-full mt-[50px] mb-[50px]">
+            <div>
+              <h2 className="text-[24px] capitalize font-semibold">Reviews</h2>
+            </div>
+            <div className="w-full h-full mx-auto mt-3 md:hidden xl:flex">
+              <Swiper
+                modules={[Navigation]}
+                spaceBetween={25}
+                slidesPerView={swipersettings}
+                navigation
+              >
+                {itemComments.map((item) => (
+                  <SwiperSlide
+                    key={item._id}
+                    className="w-[230px] px-3 py-4 bg-lighterGreen rounded-lg border-gray-300 border-2"
+                  >
+                    <div className="flex  gap-5">
+                      <div className="w-[30px] h-[30px] rounded-full">
+                        <Image
+                          src={item.userProfileImage}
+                          alt="reviewer profile pic"
+                          width={30}
+                          height={30}
+                          className="w-full h-full rounded-full"
+                        />
+                      </div>
+                      <div className="w-full">
+                        <h2 className="text-[17px] font-semibold capitalize">
+                          {item.userName}
+                        </h2>
+                        <p className="text-[11px] text-inputText mt-2 text-left">
+                          {item.comment}
+                        </p>
+                        <div className="flex flex-row items-center mt-3">
+                          {/* <FaStar className="text-starColor2 text-[15px]" />
+                          <FaStar className="text-starColor2 text-[15px]" />
+                          <FaStar className="text-starColor2 text-[15px]" />
+                          <FaStar className="text-starColor2 text-[15px]" />
+                          <FaRegStar className="text-starColor2 text-[15px]" /> */}
+                          {Array.from({ length: 5 }, (_, index) => (
+                                index < item.rating ? (
+                                  <FaStar key={index} className="text-starColor2 text-[15px]" />
+                                ) : (
+                                  <FaRegStar key={index} className="text-starColor2 text-[15px]" />
+                                )
+                              ))}
+                        </div>
+                        Rating : {item.rating}
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+
+            <div className="w-full h-full mx-auto mt-3 md:flex xl:hidden">
+              <Swiper
+                modules={[Navigation]}
+                spaceBetween={20}
+                slidesPerView={swipersettings}
+                navigation
+              >
+                {itemComments.map((item) => (
+                  <SwiperSlide
+                    key={item._id}
+                    className="w-[230px] px-3 py-4 bg-lighterGreen rounded-lg border-gray-300 border-2"
+                  >
+                    <div className="flex  gap-5">
+                      <div className="w-[30px] h-[30px] rounded-full">
+                        <Image
+                          src={item.userProfileImage}
+                          alt="reviewer profile pic"
+                          width={30}
+                          height={30}
+                          className="w-full h-full rounded-full"
+                        />
+                      </div>
+                      <div className="w-full">
+                        <h2 className="text-[17px] font-semibold capitalize">
+                          {/* {userName} */}
+                        </h2>
+                        <p className="text-[11px] text-inputText mt-2 text-justify">
+                          {item.comment}
+                        </p>
+                        <div className="flex flex-row items-center mt-3">
+                          <FaStar className="text-starColor2 text-[15px]" />
+                          <FaStar className="text-starColor2 text-[15px]" />
+                          <FaStar className="text-starColor2 text-[15px]" />
+                          <FaStar className="text-starColor2 text-[15px]" />
+                          <FaRegStar className="text-starColor2 text-[15px]" />
+                        </div>
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          </section>
+        </div>)}
+        
       </PageTransition>
       <AddToCart open={toggle} onClose={() => setToggle(false)} />
     </>

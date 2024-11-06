@@ -47,7 +47,7 @@ const Sidebar = () => {
     if(typeof window !== "undefined") {
       windowWidth = window.innerWidth;
       console.log(windowWidth);
-      if( windowWidth >= 700){
+      if( windowWidth >= 1024){
         setIsDesktop(true);
       } else {
         setIsDesktop(false);
@@ -191,13 +191,13 @@ const Sidebar = () => {
       <>
         <button
           onClick={() => setDrawerOpen(!drawerOpen)}
-          className="fixed top-28 left-4 z-50 bg-primary p-2 text-white rounded-md"
+          className="fixed top-28 left-4 z-10 bg-primary p-2 text-white rounded-md"
         >
           Menu
         </button>
         {drawerOpen && (
           <div className="fixed inset-0 z-40 bg-black bg-opacity-50" onClick={() => setDrawerOpen(false)}>
-            <div className="fixed left-0 top-0 w-[50%] h-full bg-primary shadow-lg p-4">
+            <div className="fixed left-0 top-0 w-[70vw] h-full bg-primary shadow-lg p-4">
               <Image src="/Logo.webp" alt="logo" width={140} height={40} className="mt-2 mb-6" />
               <div className="mt-10 w-full flex flex-col gap-2">
           <Link
@@ -208,7 +208,7 @@ const Sidebar = () => {
                 : "w-full h-[60px] flex flex-row px-[40px] items-center cursor-pointer gap-5"
             }
           >
-            <SiHomeassistantcommunitystore className="text-white w-[24px] h-[24px]" />
+            {/* <SiHomeassistantcommunitystore className="text-white w-[24px] h-[24px]" /> */}
             <h3 className="capitalize text-white font-semibold text-[15px] font-sans">
               home
             </h3>
@@ -221,7 +221,7 @@ const Sidebar = () => {
                 : "w-full h-[60px] flex flex-row px-[40px] items-center cursor-pointer gap-5"
             }
           >
-            <IoFastFoodSharp className="text-white w-[24px] h-[24px]" />
+            {/* <IoFastFoodSharp className="text-white w-[24px] h-[24px]" /> */}
             <h3 className="capitalize text-white font-semibold text-[15px] font-sans">
               my orders
             </h3>
@@ -234,7 +234,7 @@ const Sidebar = () => {
                 : "w-full h-[60px] flex flex-row px-[40px] items-center cursor-pointer gap-5"
             }
           >
-            <FaCartShopping className="text-white w-[24px] h-[24px]" />
+            {/* <FaCartShopping className="text-white w-[24px] h-[24px]" /> */}
             <h3 className="capitalize text-white font-semibold text-[15px] font-sans">
               cart
             </h3>
@@ -247,7 +247,7 @@ const Sidebar = () => {
                 : "w-full h-[60px] flex flex-row px-[40px] items-center cursor-pointer gap-5"
             }
           >
-            <IoHeart className="text-white w-[24px] h-[24px]" />
+            {/* <IoHeart className="text-white w-[24px] h-[24px]" /> */}
             <h3 className="capitalize text-white font-semibold text-[15px] font-sans">
               favourites
             </h3>
@@ -260,7 +260,7 @@ const Sidebar = () => {
                 : "w-full h-[60px] flex flex-row px-[40px] items-center cursor-pointer gap-5"
             }
           >
-            <SiHomeadvisor className="text-white w-[24px] h-[24px]" />
+            {/* <SiHomeadvisor className="text-white w-[24px] h-[24px]" /> */}
             <h3 className="capitalize text-white font-semibold text-[15px] font-sans">
               shops
             </h3>
@@ -273,7 +273,7 @@ const Sidebar = () => {
                 : "w-full h-[60px] flex flex-row px-[40px] items-center cursor-pointer gap-5"
             }
           >
-            <FaGift className="text-white w-[24px] h-[24px]" />
+            {/* <FaGift className="text-white w-[24px] h-[24px]" /> */}
             <h3 className="capitalize text-white font-semibold text-[15px] font-sans">
               loyalty rewards
             </h3>
@@ -286,7 +286,7 @@ const Sidebar = () => {
                 : "w-full h-[60px] flex flex-row px-[40px] items-center cursor-pointer gap-5"
             }
           >
-            <IoIosSettings className="text-white w-[24px] h-[24px]" />
+            {/* <IoIosSettings className="text-white w-[24px] h-[24px]" /> */}
             <h3 className="capitalize text-white font-semibold text-[15px] font-sans">
               settings
             </h3>
@@ -296,7 +296,7 @@ const Sidebar = () => {
             className="w-full h-[60px] flex flex-row px-[40px] items-center cursor-pointer gap-5"
             onClick={handleLogout}
           >
-            <IoLogOut className="text-white w-[24px] h-[24px]" />
+            {/* <IoLogOut className="text-white w-[24px] h-[24px]" /> */}
             <h3 className="capitalize text-white font-semibold text-[15px] font-sans">
               log out
             </h3>

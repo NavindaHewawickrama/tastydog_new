@@ -37,6 +37,34 @@ const MyAccount = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
 
+  const [isDesktop, setIsDesktop] = useState(true);
+
+//checking if window is desktop size or not
+const checkWindowSize = () => {
+  let windowWidth;
+  if(typeof window !== "undefined") {
+    windowWidth = window.innerWidth;
+    console.log(windowWidth);
+    if( windowWidth >= 1024){
+      setIsDesktop(true);
+    } else {
+      setIsDesktop(false);
+    }
+  }
+
+  
+}
+
+useEffect(() => {
+  checkWindowSize();
+}, [isDesktop])
+
+
+//when window is resizing
+  if(typeof window !== "undefined") {
+    window.addEventListener('resize', checkWindowSize);
+  }
+
     const handleShowAlert = () => {
       setShowAlert(true);
       setTimeout(() => setShowAlert(false), 3000); // Auto-close after 3 seconds
@@ -212,7 +240,7 @@ const MyAccount = () => {
               onClose={() => setShowAlert(false)} 
             />
       <PageTransition>
-        <div className="relative max-w-[950px] flex flex-col gap-10">
+        {isDesktop ? (<div className="relative max-w-[950px] flex flex-col gap-10">
           <h2 className="text-[24px] font-semibold capitalize">my profile</h2>
           <div className="relative w-[146px] h-[146px] rounded-full mb-2">
             <Image
@@ -362,7 +390,163 @@ const MyAccount = () => {
               deactivate account
             </button>
           </div>
-        </div>
+        </div>) : (
+          //Mobile view
+
+
+          <div className="relative max-w-[950px] flex mt-8 flex-col gap-10">
+          <h2 className="text-[24px] font-semibold capitalize mb-10 w-full flex flex-col items-center justify-center text-center align-middle">my profile</h2>
+          <div className="relative mt-5  h-[10vh] rounded-full mb-5 w-full flex flex-col items-center justify-center text-center align-middle">
+            <Image
+              src={imageUrl || "/profile.png"}
+              alt="profile-pic"
+              width={146}
+              height={146}
+              className="rounded-full"
+            />
+            <br/><br/>
+            <input
+                type="file"
+                id="imageInput"
+                accept="image/*"
+                onChange={handleImageChange}
+                style={{ display: "none" }}
+              />
+
+              <button
+                onClick={triggerFileInputClick}
+                className="absolute show bottom-0 right-0 w-[3vmax] h-[3vmax] bg-button2 rounded-full flex justify-center items-center transition-transform duration-300 ease-in-out transform hover:scale-[1.1]"
+              >
+                <MdEdit size={23} color="white" />
+              </button>
+          </div>
+
+          <div className="w-full flex flex-col gap-3">
+            <div className="w-full flex flex-col items-center justify-center text-center align-middle">
+              <h3 className="text-[18px] font-bold capitalize mb-3">
+                personal info
+              </h3>
+              <button
+                className="w-[91px] h-[31px] bg-none border-2 border-button2 text-[14px] text-center rounded-lg transition-transform duration-300 ease-in-out transform hover:scale-[1.1] mr-1"
+                onClick={() => setUpdateAccountModal(true)}
+              >
+                Edit
+              </button>
+            </div>
+            <div className=" h-[30vh]  justify-center items-center w-full flex flex-col text-center align-middle">
+              <h3 className="text-[18px] font-bold capitalize mb-3"></h3>
+              <div className="flex flex-col items-center gap-1">
+                <p className="text-[14px] text-inputText capitalize">
+                  full name:
+                </p>
+                <p className="text-[14px] text-detail font-bold mb-2 capitalize">{userName}</p>
+              </div>
+              <div className="flex flex-col items-center gap-1">
+                <p className="text-[14px] text-inputText capitalize">
+                  Phone Number:
+                </p>
+                <p className="text-[14px] text-detail mb-2 font-bold capitalize">
+                  {phoneNumber}
+                </p>
+              </div>
+              <div className="flex flex-col items-center gap-1">
+                <p className="text-[14px] text-inputText capitalize">email:</p>
+                <p className="text-[14px] text-detail font-bold ">
+                  {email}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="w-full flex flex-col gap-5 items-center justify-center text-center align-middle">
+            <h3 className="text-[16px] font-semibold capitalize">
+              address book
+            </h3>
+            <div className=" flex-row gap-4">
+              {address1.length > 0 &&
+                address1.slice(0, 3).map((address: any) => (
+                  <div className="flex flex-col items-center justify-center text-center align-middle w-[50vw] h-full px-[50px] py-[25px] bg-orangeLight " key={address._id}>
+                    <div className="w-full flex justify-between">
+                      <p className="text-[10px] text-inputText capitalize">
+                        
+                      </p>
+                      <p
+                        className="text-[3vmin] text-button2 underline cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-[1.1] "
+                        onClick={() => handleAddressEdit(address._id)}
+                      >
+                        Edit
+                      </p>
+                    </div>
+
+                    <div className="mt-[30px] flex flex-col gap-1">
+                      <h3 className="text-[5vmin] font-semibold capitalize text-detail">
+                        {address.userName}
+                      </h3>
+                      <p className="text-[4vmin] capitalize text-detail">
+                        {address.aptSuite}, {address.streetAddress}, {address.city}, {address.state}, {address.landmark}, {address.country}
+                      </p>
+                      <p className="text-[17px] capitalize text-detail">
+                       {phoneNumber}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              <div
+                className="w-[50vw]  px-[50px] py-[25px] bg-orangeLight rounded-lg flex flex-col justify-center items-center gap-2 cursor-pointer"
+                onClick={() => setNewAddress(true)}
+              >
+                <CiCirclePlus className="w-[50px] h-[50px] text-inputText transition-transform duration-300 ease-in-out transform hover:scale-[1.1]" />
+                <h3 className="text-[16px] capitalize text-inputText">
+                  Add New Address
+                </h3>
+              </div>
+            </div>
+          </div>
+          <div className="w-full">
+            <h3 className="text-[16px] font-semibold capitalize text-detail w-full flex flex-col items-center justify-center text-center align-middle">
+              Payment Method
+            </h3>
+            <div className="flex flex-col gap-2 mt-7w-full items-center justify-center text-center align-middle">
+              <h3 className="text-[14px] text-detail capitalize">
+                saved cards
+              </h3>
+              {cardNumber && ( // Check if card details exist before rendering
+                <div className="w-full flex justify-between px-[25px] py-[10px] border border-lightGray rounded-md items-center flex-col text-center align-middle">
+                  <div className="w-full flex gap-4">
+                    <FaCcVisa className="text-[50px] text-blue-800" />
+                    <div className="flex flex-col justify-center">
+                      <p className="text-[16px]">{cardNumber}</p>
+                      <p className="text-[13px] text-inputText ">Expires {date}</p>
+                    </div>
+                  </div>
+                  <RiDeleteBinLine 
+                    onClick={()=>handleDelete()}
+                  className="text-[20px] cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-[1.2]" />
+                </div>
+              )}
+              <p
+                className="t-[14px] text-button2 underline capitalize cursor-pointer"
+                onClick={() => setNewPaymentModel(true)}
+              >
+                Add New Payment Method
+              </p>
+            </div>
+          </div>
+          <div className="flex gap-5 mt-5">
+            <button
+              className="w-[320px] h-[50px] text-center text-white bg-Green2 rounded-lg capitalize text-[3vmin] transition-transform duration-300 ease-in-out transform hover:scale-95"
+              onClick={() => setOpenPassword(true)}
+            >
+              change password
+            </button>
+            <button
+              className="w-[70vw] h-[50px] text-center text-red-600 bg-none rounded-lg capitalize text-[3vmin] border-2 border-red-600 transition-transform duration-300 ease-in-out transform hover:scale-95"
+              onClick={() => setDeleteModel(true)}
+            >
+              deactivate account
+            </button>
+          </div>
+        </div>)}
+        
       </PageTransition>
 
       <DeleteAccount open={deleteModel} onClose={() => setDeleteModel(false)} />
