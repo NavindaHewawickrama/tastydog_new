@@ -20,6 +20,35 @@ const Page: React.FC = () => {
   const [inputPromoCode,setInputPromoCode]=useState("");
   const [promoCodeData, setpromoCodeData] = useState<any[]>([]);
   const [discount, setDiscount]=useState<GLfloat | null>(null);
+  const [isDesktop, setIsDesktop] = useState(true);
+
+  //checking if window is desktop size or not
+  const checkWindowSize = () => {
+    let windowWidth;
+    if(typeof window !== "undefined") {
+      windowWidth = window.innerWidth;
+      console.log(windowWidth);
+      if( windowWidth >= 1024){
+        setIsDesktop(true);
+      } else {
+        setIsDesktop(false);
+      }
+    }
+  
+    
+  }
+  
+  useEffect(() => {
+    checkWindowSize();
+  }, [isDesktop])
+  
+  
+  //when window is resizing
+    if(typeof window !== "undefined") {
+      window.addEventListener('resize', checkWindowSize);
+    }
+
+
   useEffect(() => {
     const userIDSvd = localStorage.getItem("userId");
     setUserId(userIDSvd);
@@ -96,7 +125,8 @@ const Page: React.FC = () => {
   return (
     <>
       <PageTransition>
-        <div className="max-w-[1300px] pl-[50px] py-[50px] flex gap-20">
+        {isDesktop?(
+          <div className="max-w-[1300px] pl-[50px] py-[50px] flex gap-20">
           <div className="w-[50%] flex-1 ">
             <div className="w-full flex flex-col py-[50px] px-[30px] shadow-xl">
               <div className="flex flex-row items-center gap-10">
@@ -166,6 +196,79 @@ const Page: React.FC = () => {
             />
           </div>
         </div>
+        ):(
+          <div className="max-w-[1300px] pl-[50px] py-[50px] gap-20">
+          <div className="w-[50%] flex-1 ">
+            <div className="w-[70vw] flex flex-col py-[50px] px-[30px] shadow-xl">
+              <div className="flex flex-row items-center gap-10">
+                <HiGiftTop className="w-[50px] h-[50px] text-buttonGreen" />
+                <h2 className="font-semibold text-[16px] capitalize">
+                  Loyalty rewards
+                </h2>
+              </div>
+              {milestones.length === 0 && (
+              <p className="mt-5">No data available</p>
+            )}
+              {milestones.length !=0 && <>
+                <div className="w-full mt-[50px]">
+                <p className="text-8px text-inputText capitalize">
+                  {`You Are ${leastRemainingOrders} Meals Away From our 10$ Discount`}
+                </p>
+                <div className="w-full bg-lightGreen rounded-full h-5 dark:bg-lightGreen mt-[10px]">
+                  <div className="bg-buttonGreen h-5 rounded-full" style={{ width: `${(leastRemainingOrders / 5) * 100}%` }}></div>
+                </div>
+              </div>
+              <div className="w-full mt-[50px] flex flex-col gap-4">
+                {milestones.map((milestone) => (
+                  <div key={milestone.milestoneId} className="flex w-full px-[30px] py-[30px] bg-lighterGreen shadow-lg">
+                    <div className="w-[90%]">
+                      <h3 className="text-[16px] font-semibold capitalize mb-1">
+                        {milestone.name}
+                      </h3>
+                      <p className="text-[13px] text-inputText">
+                        {milestone.description}
+                      </p>
+                    </div>
+                    <div className="w-[10%] flex items-center justify-center">
+                      <p className="text-[14px] font-medium">{`${milestone.remainingOrders}/${milestone.expectedTotalOrders}`}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              </>}
+            </div>
+            <div className="flex w-[70vw] flex-col items-center bg-green-50 mt-10 shadow-black border rounded-xl border-gray-300 p-5">
+              <div className="flex flex-row w-full gap-5 items-center justify-center">
+                <AiOutlinePercentage className="text-[18px] text-buttonGreen" />
+                <div className="flex-grow  h-[45px] border bg-inputBlue rounded-xl border-inputBorder ">
+                  <input
+                    type="text"
+                    placeholder="promo code"
+                    onChange={(e) => setInputPromoCode(e.target.value)}
+                    className="w-[30vw] h-[45px] rounded-xl bg-inputBlue border-none px-3 text-inputText2 text-left text-[12px] "
+                  />
+                </div>
+                <button
+                  onClick={handlePromoCode}
+                  className="py-[10px] px-5 h-[45px] rounded-xl bg-buttonGreen text-[10px] text-white capitalize cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-95"
+                >
+                  Redeem
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div className="w-[50vw] mt-4 ml-6 lg:flex md:hidden flex-1 flex justify-center items-center">
+            <Image
+              src="/loyalty.webp"
+              alt="loyalty_logo"
+              width={525}
+              height={525}
+            />
+          </div>
+        </div>
+        )}
+        
       </PageTransition>
     </>
   );
