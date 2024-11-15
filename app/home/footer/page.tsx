@@ -62,7 +62,7 @@ useEffect(() => {
     ):(
       <footer className="w-full py-4 bg-primary text-white">
       <div className="flex justify-between container mx-auto px-4">
-        <div className="flex space-x-8 text-[3vmin]">
+        <div className="flex space-x-[10vw] text-[0.5rem]">
           <Link href="/home" className="hover:underline">
             Home
           </Link>
@@ -75,8 +75,6 @@ useEffect(() => {
             <Link href="https://tastydog.com.au/contact-us"  rel="noopener noreferrer" target="_blank" className="hover:underline">
             Contact
             </Link>
-        </div>
-        <div className="flex space-x-8 text-[3vmin]">
           <Link href="https://tastydog.com.au/privacy-policy"  rel="noopener noreferrer" target="_blank" className="hover:underline">
             Privacy Policy
           </Link>

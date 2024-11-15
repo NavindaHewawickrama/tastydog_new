@@ -77,18 +77,22 @@ const DropDownList = () => {
             />
       <section className="relative">
       <div className="flex justify-between items-center lg:w-[210px] md:w-[200px] xl:w-[210px] w-[150px] h-[60px] rounded-lg bg-lighterGreen px-[10px] py-[8px]">
-        <Link href="/home/settings" className="flex items-center gap-4">
-          <Image
-            src={imageUrl || ""}
-            alt="profil_pic"
-            width={43}
-            height={43}
-            className="rounded-full h-[43px] w-[43px] transition-transform duration-300 ease-in-out transform hover:scale-[1.2]"
-          />
-          <h3 className="xl:text-[14px] lg:text-[14px] md:text-[14px] text-[9px] font-medium capitalize text-detail">
-            {name}
-          </h3>
-        </Link>
+            <Link href="/home/settings" className="flex items-center gap-6">
+            <div className="flex-shrink-0 w-[43px] h-[43px] mt-1 overflow-hidden rounded-full">
+              {/* Image */}
+              <Image
+                src={imageUrl || ""}
+                alt="profil_pic"
+                width={43}
+                height={43}
+                className="object-cover transition-transform duration-300 ease-in-out transform hover:scale-[1.2]"
+              />
+            </div>
+              <h3 className="xl:text-[14px] lg:text-[14px] md:text-[14px] text-[9px] font-medium capitalize text-detail">
+                {name}
+              </h3>
+            </Link>
+          
 
         {!isOpen ? (
           <RiArrowDropDownLine
