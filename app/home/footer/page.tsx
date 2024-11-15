@@ -75,10 +75,10 @@ useEffect(() => {
             <Link href="https://tastydog.com.au/contact-us"  rel="noopener noreferrer" target="_blank" className="hover:underline">
             Contact
             </Link>
-          <Link href="https://tastydog.com.au/privacy-policy"  rel="noopener noreferrer" target="_blank" className="hover:underline">
+          <Link href="https://sites.google.com/view/tastydog-privacy-policy"  rel="noopener noreferrer" target="_blank" className="hover:underline">
             Privacy Policy
           </Link>
-          <Link  href="https://tastydog.com.au/terms-and-conditions"   rel="noopener noreferrer" target="_blank" className="hover:underline">
+          <Link  href="https://sites.google.com/view/termsandconditions-tastydog"   rel="noopener noreferrer" target="_blank" className="hover:underline">
             Terms and Conditions
           </Link>
         </div>
