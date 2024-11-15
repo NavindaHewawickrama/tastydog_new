@@ -242,30 +242,31 @@ useEffect(() => {
       <PageTransition>
         {isDesktop ? (<div className="relative max-w-[950px] flex flex-col gap-10">
           <h2 className="text-[24px] font-semibold capitalize">my profile</h2>
-          <div className="relative w-[146px] h-[146px] rounded-full mb-2">
-            <Image
-              src={imageUrl || "/profile.png"}
-              alt="profile-pic"
-              width={146}
-              height={146}
-              className="rounded-full"
-            />
-            <br/>
-            <input
-                type="file"
-                id="imageInput"
-                accept="image/*"
-                onChange={handleImageChange}
-                style={{ display: "none" }}
+            <div className="relative w-[146px] h-[146px] rounded-full mb-2 ">
+              <Image
+                src={imageUrl || "/profile.png"}
+                alt="profile-pic"
+                width={146}
+                height={146}
+                className="rounded-full object-cover w-full h-full overflow-hidden"
+                
               />
+              <br/>
+              <input
+                  type="file"
+                  id="imageInput"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                  style={{ display: "none" }}
+                />
 
-              <button
-                onClick={triggerFileInputClick}
-                className="absolute show bottom-0 right-0 w-[33px] h-[33px] bg-button2 rounded-full flex justify-center items-center transition-transform duration-300 ease-in-out transform hover:scale-[1.1]"
-              >
-                <MdEdit size={23} color="white" />
-              </button>
-          </div>
+                <button
+                  onClick={triggerFileInputClick}
+                  className="absolute show bottom-0 right-0 w-[33px] h-[33px] bg-button2 rounded-full flex justify-center items-center transition-transform duration-300 ease-in-out transform hover:scale-[1.1] overflow-visible"
+                >
+                  <MdEdit size={23} color="white" />
+                </button>
+            </div>
 
           <div className="w-full flex flex-col gap-3">
             <div className="w-full flex justify-between items-center">
@@ -396,13 +397,13 @@ useEffect(() => {
 
           <div className="relative max-w-[950px] flex mt-8 flex-col gap-10">
           <h2 className="text-[24px] font-semibold capitalize mb-10 w-full flex flex-col items-center justify-center text-center align-middle">my profile</h2>
-          <div className="relative mt-5  h-[10vh] rounded-full mb-5 w-full flex flex-col items-center justify-center text-center align-middle">
+          <div className="relative mt-2 h-[146px] w-[146px] mb-5  flex-col items-center justify-center text-center align-middle rounded-full">
             <Image
               src={imageUrl || "/profile.png"}
               alt="profile-pic"
               width={146}
               height={146}
-              className="rounded-full"
+              className="rounded-full object-cover w-full h-full overflow-hidden"
             />
             <br/><br/>
             <input

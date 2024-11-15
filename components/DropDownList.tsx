@@ -76,32 +76,33 @@ const DropDownList = () => {
               onClose={() => setShowAlert(false)} 
             />
       <section className="relative">
-        <div className="flex justify-between items-center lg:w-[210px] md:w-[200px] xl:w-[210px] w-[150px] h-[60px] rounded-lg bg-lighterGreen px-[10px] py-[8px]">
-          <Link href="/home/settings" className="flex items-center gap-4">
-            <Image
-              src={imageUrl || ""}
-              alt="profil_pic"
-              width={43}
-              height={43}
-              className="rounded-full h-auto transition-transform duration-300 ease-in-out transform hover:scale-[1.2]"
-            />
-            <h3 className="xl:text-[14px] lg:text-[14px] md:text[14px] text-[9px] font-medium capitalize text-detail">
-              {name}
-            </h3>
-          </Link>
+      <div className="flex justify-between items-center lg:w-[210px] md:w-[200px] xl:w-[210px] w-[150px] h-[60px] rounded-lg bg-lighterGreen px-[10px] py-[8px]">
+        <Link href="/home/settings" className="flex items-center gap-4">
+          <Image
+            src={imageUrl || ""}
+            alt="profil_pic"
+            width={43}
+            height={43}
+            className="rounded-full h-[43px] w-[43px] transition-transform duration-300 ease-in-out transform hover:scale-[1.2]"
+          />
+          <h3 className="xl:text-[14px] lg:text-[14px] md:text-[14px] text-[9px] font-medium capitalize text-detail">
+            {name}
+          </h3>
+        </Link>
 
-          {!isOpen ? (
-            <RiArrowDropDownLine
-              className="w-[50px] h-[50px] text-inputText cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-[1.2]"
-              onClick={() => setIsOpen(true)}
-            />
-          ) : (
-            <MdArrowDropUp
-              className="w-[50px] h-[50px] text-inputText cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-[1.2]"
-              onClick={() => setIsOpen(false)}
-            />
-          )}
-        </div>
+        {!isOpen ? (
+          <RiArrowDropDownLine
+            className="w-[50px] h-[50px] text-inputText cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-[1.2]"
+            onClick={() => setIsOpen(true)}
+          />
+        ) : (
+          <MdArrowDropUp
+            className="w-[50px] h-[50px] text-inputText cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-[1.2]"
+            onClick={() => setIsOpen(false)}
+          />
+        )}
+      </div>
+
 
         {isOpen && (
           <div className="absolute top-[60px] z-50  w-full h-[80px] bg-white shadow-xl rounded-xl flex flex-col justify-center items-center">
