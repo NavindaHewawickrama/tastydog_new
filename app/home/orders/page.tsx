@@ -638,12 +638,13 @@ const handleContactShop = async (id:any) => {
             </div>
 
             {!statusVal ? (
-              <div className="w-[80vw]  flex justify-center items-center  rounded-xl  shadow-gray-300 shadow-xl">
+              <div className="w-[80vw]  flex justify-center items-center  rounded-xl mt-6  shadow-gray-300 shadow-xl">
                 <Image
                   src="/my_orders.png"
                   alt="logo"
                   width={180}
                   height={230}
+                  className="p-5"
                 />
               </div>
             ) : statusVal === "Processing" ? (

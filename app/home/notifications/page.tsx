@@ -256,7 +256,7 @@ useEffect(() => {
         <h2 className="text-[24px] font-bold text-detail">Notifications</h2>
         <div className="w-full  mt-8 xl:gap-[100px] md:gap-[25px] lg:gap-[50px] flex flex-col items-center justify-center text-center align-middle">
           <div className="w-[65%] h-full">
-            <div className="w-full h-[150px] flex justify-center items-center border border-gray-300 rounded-[20px]">
+            <div className="w-full h-[150px] flex justify-center items-center border p-5 mb-3 border-gray-300 rounded-[20px]">
               <button
                 className={`w-[75px] h-[28px] border border-gray-300 rounded-tl-xl rounded-bl-xl cursor-pointer ${activeButton === "all" ? "bg-button2 text-white" : ""} text-detail text-[13px] font-medium`}
                 onClick={() => handleButtonClick("all")}
@@ -276,19 +276,19 @@ useEffect(() => {
                 Unread
               </button>
             </div>
-            <div className="w-full flex flex-col rounded-xl items-center mb-5 justify-center text-center align-middle">
+            <div className="w-[50vw] flex flex-col rounded-xl items-center mb-5 justify-center text-center align-middle">
               {filteredNotifications.map((item) => (
                 <div
                   key={item._id}
-                  className="flex items-center gap-5 border border-gray-300 rounded-xl px-[50px] py-[25px] hover:bg-green-200"
+                  className="flex items-center gap-5 border border-gray-300 rounded-xl px-[50px] py-[25px] mb-4 hover:bg-green-200"
                   onClick={() => handleNotificationClick(item._id)}
                 >
-                  <GiApothecary className="text-[25px] text-button2" />
+                  <GiApothecary className="text-[50px] text-button2" />
                   <div className="flex flex-col gap-2 justify-center cursor-pointer ">
-                    <h3 className="text-[15px] text-detail font-semibold capitalize">
+                    <h3 className={`${item.message.length>50?"text-[8px]":"text-[12px]"} text-detail font-semibold capitaliz`} >
                       {item.message}
                     </h3>
-                    <p className="text-[12px] text-inputText font-semibold">
+                    <p className="text-[10px] text-inputText font-semibold">
                       {new Date(item.time).toLocaleString()}
                     </p>
                   </div>
